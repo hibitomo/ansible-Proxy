@@ -1,5 +1,5 @@
 - name: Set Proxy
   hosts: server
-  user: root
+  user: lagopus
   roles:
     - proxy

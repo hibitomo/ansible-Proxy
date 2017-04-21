@@ -1,21 +1,21 @@
 ansible-Proxy
 =============
 
-ansibleを使って、CentOSにプロキシの設定をします。  
+ansibleを使って、Ubuntuにプロキシの設定をします。  
 
 ansible...サーバ構成管理ソフトウェア  
 
-対象環境
+テスト環境
 -----
-CentOS 6.4 64bit   (virtualbox + vagrantで構築)
+
+Ubuntu 16.04.2 LTS
 
 実行環境
 -----
+
 ```
 	$ ansible --version  
-	ansible 1.2.2  
-	$ ruby -v  
-	ruby 1.9.3p194 (2012-04-20 revision 35410) [x86_64-darwin11.4.2]
+	ansible 2.0.0.2
 ```
 
 proxyの設定場所
@@ -32,7 +32,6 @@ proxyを設定するもの
 ------
 + bash
 + git
-+ Ruby - gem
 + wget
 + curl
 + yum
@@ -43,6 +42,6 @@ proxyを設定するもの
 hosts内に対象サーバのIPアドレスを入力しておくこと。  
 
 ```
-ansible-playbook setup.yml -i hosts
+ansible-playbook setup.yml -i hosts -K
 ```
 
