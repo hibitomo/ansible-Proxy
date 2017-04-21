@@ -1,7 +1,12 @@
 # env
 - name: insert shell proxy(http)
-  lineinfile: dest=/etc/profile.d/proxy.sh state=present create=yes mode=0644 regexp="{{ http_proxy }}"
+  lineinfile: dest=/etc/profile.d/proxy.sh state=present create=yes mode=0644 regexp="export http_proxy"
               insertafter=EOF line="export http_proxy={{ http_proxy }}"
+  become: yes
+  ignore_errors: yes
+- name: insert shell proxy(http)
+  lineinfile: dest=/etc/profile.d/proxy.sh state=present create=yes mode=0644 regexp="export https_proxy"
+              insertafter=EOF line="export https_proxy={{ https_proxy }}"
   become: yes
   ignore_errors: yes
 
