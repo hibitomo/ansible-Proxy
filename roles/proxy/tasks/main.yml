@@ -49,7 +49,7 @@
               insertafter=EOF line="Acquire::http::Proxy \"{{ http_proxy }}\";" create=yes
   become: yes
   ignore_errors: yes
-- name: insert apt proxy(http)
+- name: insert apt proxy(https)
   lineinfile: dest=/etc/apt/apt.conf state=present regexp="Acquire::https::Proxy"
               insertafter=EOF line="Acquire::https::Proxy \"{{ https_proxy }}\";" create=yes
   become: yes
