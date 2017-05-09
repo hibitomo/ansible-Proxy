@@ -12,12 +12,16 @@
 
 # git
 - name: set git proxy(http)
-  shell: "git config --global http.proxy {{ http_proxy }}"
-  ignore_errors: yes
+  git_config:
+    name: http.proxy
+    scope: global
+    value: "{{ http_proxy }}"
 
 - name: set git proxy(https)
-  shell: "git config --global https.proxy {{ https_proxy }}"
-  ignore_errors: yes
+  git_config:
+    name: https.proxy
+    scope: global
+    value: "{{ https_proxy }}"
 
 # wget
 - name: insert wget proxy(http)

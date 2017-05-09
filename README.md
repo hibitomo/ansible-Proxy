@@ -13,9 +13,14 @@ Ubuntu 16.04.2 LTS
 実行環境
 -----
 
+ansibleはpipで入手する．
+
 ```
-	$ ansible --version  
-	ansible 2.0.0.2
+$ ansible --version
+ansible 2.3.0.0
+  config file =
+    configured module search path = Default w/o overrides
+      python version = 2.7.12 (default, Nov 19 2016, 06:48:10) [GCC 5.4.0 20160609]
 ```
 
 proxyの設定場所
