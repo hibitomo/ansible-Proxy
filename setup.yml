@@ -1,5 +1,0 @@
-- name: Set Proxy
-  hosts: server
-  user: ubuntu
-  roles:
-    - proxy
