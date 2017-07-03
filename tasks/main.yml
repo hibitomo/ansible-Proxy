@@ -32,7 +32,7 @@
 
 - name: insert wget proxy(https)
   lineinfile: dest=/etc/wgetrc state=present regexp="{{ proxy_env.https_proxy }}"
-              insertafter="^#https_proxy" line="https_proxy={{ https_proxy }}"
+              insertafter="^#https_proxy" line="https_proxy={{ proxy_env.https_proxy }}"
   become: yes
   ignore_errors: yes
 

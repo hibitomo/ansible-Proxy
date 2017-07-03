@@ -1,0 +1,4 @@
+- hosts: hosts1
+  remote_user: ubuntu
+  roles:
+    - ../ansible-Proxy
