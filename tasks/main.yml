@@ -1,3 +1,15 @@
+# apt
+- name: insert apt proxy(http)
+  lineinfile: dest=/etc/apt/apt.conf state=present regexp="Acquire::http::Proxy"
+              insertafter=EOF line="Acquire::http::Proxy \"{{ proxy_env.http_proxy }}\";" create=yes
+  become: yes
+  ignore_errors: yes
+- name: insert apt proxy(https)
+  lineinfile: dest=/etc/apt/apt.conf state=present regexp="Acquire::https::Proxy"
+              insertafter=EOF line="Acquire::https::Proxy \"{{ proxy_env.https_proxy }}\";" create=yes
+  become: yes
+  ignore_errors: yes
+
 # env
 - name: insert shell proxy(http)
   lineinfile: dest=/etc/profile.d/proxy.sh state=present create=yes mode=0644 regexp="export http_proxy"
@@ -11,6 +23,12 @@
   ignore_errors: yes
 
 # git
+- name: apt install git
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+    - git
+  become: yes
+
 - name: set git proxy(http)
   git_config:
     name: http.proxy
@@ -40,17 +58,5 @@
 - name: insert curl proxy(http)
   lineinfile: dest=/etc/.curlrc state=present create=yes regexp="{{ proxy_env.http_proxy }}"
               insertafter=EOF line="proxy={{ proxy_env.http_proxy }}"
-  become: yes
-  ignore_errors: yes
-
-# apt
-- name: insert apt proxy(http)
-  lineinfile: dest=/etc/apt/apt.conf state=present regexp="Acquire::http::Proxy"
-              insertafter=EOF line="Acquire::http::Proxy \"{{ proxy_env.http_proxy }}\";" create=yes
-  become: yes
-  ignore_errors: yes
-- name: insert apt proxy(https)
-  lineinfile: dest=/etc/apt/apt.conf state=present regexp="Acquire::https::Proxy"
-              insertafter=EOF line="Acquire::https::Proxy \"{{ proxy_env.https_proxy }}\";" create=yes
   become: yes
   ignore_errors: yes
