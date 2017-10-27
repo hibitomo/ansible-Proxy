@@ -1,4 +1,18 @@
 - hosts: hosts1
   remote_user: ubuntu
+  gather_facts: no
+  become: yes
+  vars_files:
+    - ./vars/main.yml
+  pre_tasks:
+    - name: 'Setup http_proxy for apt'
+      raw: echo "Acquire::http::Proxy \"{{ proxy_env.http_proxy }}\";" | tee /etc/apt/apt.conf
+    - name: 'Setup https_proxy for apt'
+      raw: echo "Acquire::http::Proxy \"{{ proxy_env.https_proxy }}\";" | tee -a /etc/apt/apt.conf
+    - name: 'install python2'
+      raw: apt-get --yes install python
+
+- hosts: hosts1
+  remote_user: ubuntu
   roles:
     - ../ansible-Proxy
