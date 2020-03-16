@@ -43,14 +43,14 @@
 
 # wget
 - name: insert wget proxy(http)
-  lineinfile: dest=/etc/wgetrc state=present regexp="{{ proxy_env.http_proxy }}"
-              insertafter="^#http_proxy" line="http_proxy={{ proxy_env.http_proxy }}"
+  lineinfile: dest=/etc/wgetrc state=present regexp="http_proxy={{ proxy_env.http_proxy }}"
+              insertafter="^#http_proxy.*" line="http_proxy={{ proxy_env.http_proxy }}"
   become: yes
   ignore_errors: yes
 
 - name: insert wget proxy(https)
-  lineinfile: dest=/etc/wgetrc state=present regexp="{{ proxy_env.https_proxy }}"
-              insertafter="^#https_proxy" line="https_proxy={{ proxy_env.https_proxy }}"
+  lineinfile: dest=/etc/wgetrc state=present regexp="https_proxy={{ proxy_env.https_proxy }}"
+              insertafter="^#https_proxy.*" line="https_proxy={{ proxy_env.https_proxy }}"
   become: yes
   ignore_errors: yes
 
